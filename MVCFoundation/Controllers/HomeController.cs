@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCFoundation.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,9 +23,13 @@ namespace MVCFoundation.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            var contact = new ContactModel()
+            {
+                ContactEmail = "contact@company.com",
+                ContactName = "Jane Smith"
+            };
 
-            return View();
+            return View(contact);
         }
     }
 }
