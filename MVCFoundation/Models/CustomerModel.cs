@@ -8,6 +8,8 @@ namespace MVCFoundation.Models
 {
     public class CustomerModel
     {
+        public int Id { get; set; }
+
         [Display(Name = "First name")]
         [MinLength(5)]
         public string FirstName { get; set; }

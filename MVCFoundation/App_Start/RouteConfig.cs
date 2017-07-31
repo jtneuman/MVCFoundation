@@ -16,6 +16,10 @@ namespace MVCFoundation
             // Required to use attribute routing?
             routes.MapMvcAttributeRoutes();
 
+            routes.MapRoute("Customer", "customer/{name}",
+                new { controller = "Customer", action = "Search", name = UrlParameter.Optional }
+           );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
