@@ -13,7 +13,7 @@ namespace MVCFoundation.Controllers
         {
             new Book { Id = 1, ISBN ="123456789", Title = "My Fantasy Bok"},
             new Book{ Id = 2, ISBN = "234567890", Title = "My Sci-Fi Bok"},
-            new Book{ Id = 3, ISBN = "345678901", Title = "<script>alert('You have been hacked!');</script>"}
+            new Book{ Id = 3, ISBN = "345678901", Title = "My Romance Novel"}
         };
 
         // GET: Books
@@ -37,18 +37,17 @@ namespace MVCFoundation.Controllers
 
         // POST: Books/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Book book)
         {
-            try
-            {
+           
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
+                if (TryUpdateModel(books))
+                {
+                    books.Add(book);
+                    return RedirectToAction("Index");
+                }              
+            
                 return View();
-            }
         }
 
         // GET: Books/Edit/5
@@ -93,6 +92,11 @@ namespace MVCFoundation.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult GetStaticBooks()
+        {
+            return View("StaticBooks", books);
         }
     }
 }

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MVCFoundation.Models.Book>
+@{
+    ViewBag.Title = "StaticBooks";
+}
+
+<h2>StaticBooks</h2>
+
+<div>
+    <strong>
+        @Html.DisplayNameFor(m => m.First().ISBN) &nbsp;
+        @Html.DisplayNameFor(m => m.First().Title)
+    </strong>
+    @foreach (var item in Model)
+    {
+        <div>
+            @Html.DisplayFor(m => item.ISBN) &nbsp;
+            @Html.DisplayFor(m => item.Title)
+        </div>
+    }
+</div>
+
