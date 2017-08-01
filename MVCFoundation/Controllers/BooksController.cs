@@ -11,9 +11,9 @@ namespace MVCFoundation.Controllers
     {
         static List<Book> books = new List<Book>
         {
-            new Book { Id = 1, ISBN ="123456789", Title = "My Fantasy Bok"},
-            new Book{ Id = 2, ISBN = "234567890", Title = "My Sci-Fi Bok"},
-            new Book{ Id = 3, ISBN = "345678901", Title = "My Romance Novel"}
+            new Book{ Id = 1, ISBN ="123456789", Title = "My Fantasy Bok", Rating = 4},
+            new Book{ Id = 2, ISBN = "234567890", Title = "My Sci-Fi Bok", Rating =3 },
+            new Book{ Id = 3, ISBN = "345678901", Title = "My Romance Novel", Rating = 9}
         };
 
         // GET: Books
@@ -97,6 +97,24 @@ namespace MVCFoundation.Controllers
         public ActionResult GetStaticBooks()
         {
             return View("StaticBooks", books);
+        }
+
+        public ActionResult GetFirstBook()
+        {
+            var book = (from b in books
+                        orderby b.Title descending
+                        select b).FirstOrDefault();
+
+            return PartialView("_BookPartial", book);
+        }
+
+        public ActionResult GetBestBook()
+        {
+            var book = from b in books
+                       orderby b.Rating descending
+                       select b;
+
+            return PartialView("_BookDetailPartial", book.FirstOrDefault());
         }
     }
 }

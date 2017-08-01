@@ -34,6 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
+           @Html.Action("GetBestBook", "Books")
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
